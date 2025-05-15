@@ -1,0 +1,1627 @@
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WDT Trader Team - Gold Maker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet">
+    <!-- Flatpickr CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- Flatpickr JS -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#FFD700',
+                        darkgold: '#D4AF37',
+                        orange: '#FF6B00',
+                        darkorange: '#CC5500'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Prompt', sans-serif;
+            background-color: #111111;
+            color: #ffffff;
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #FFD700 0%, #D4AF37 100%);
+        }
+
+        .orange-gradient {
+            background: linear-gradient(135deg, #FF6B00 0%, #CC5500 100%);
+        }
+
+        .black-gradient {
+            background: linear-gradient(135deg, #222222 0%, #000000 100%);
+        }
+
+        .text-gold {
+            color: #FFD700;
+        }
+
+        .text-orange {
+            color: #FF6B00;
+        }
+
+        .border-gold {
+            border-color: #FFD700;
+        }
+
+        .border-orange {
+            border-color: #FF6B00;
+        }
+
+        .custom-checkbox {
+            display: inline-block;
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            user-select: none;
+        }
+
+        .custom-checkbox input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #222;
+            border: 1px solid #FFD700;
+            border-radius: 4px;
+        }
+
+        .custom-checkbox:hover input~.checkmark {
+            background-color: #333;
+        }
+
+        .custom-checkbox input:checked~.checkmark {
+            background-color: #FFD700;
+        }
+
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .custom-checkbox input:checked~.checkmark:after {
+            display: block;
+        }
+
+        .custom-checkbox .checkmark:after {
+            left: 7px;
+            top: 3px;
+            width: 6px;
+            height: 12px;
+            border: solid #000;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        .radio-container {
+            display: block;
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            user-select: none;
+        }
+
+        .radio-container input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .radio-checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #222;
+            border: 1px solid #FFD700;
+            border-radius: 50%;
+        }
+
+        .radio-container:hover input~.radio-checkmark {
+            background-color: #333;
+        }
+
+        .radio-container input:checked~.radio-checkmark {
+            background-color: #FFD700;
+        }
+
+        .radio-checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        .radio-container input:checked~.radio-checkmark:after {
+            display: block;
+        }
+
+        .radio-container .radio-checkmark:after {
+            top: 6px;
+            left: 6px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #000;
+        }
+    </style>
+    <style>
+        *,
+        ::before,
+        ::after {
+            --tw-border-spacing-x: 0;
+            --tw-border-spacing-y: 0;
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+            --tw-pan-x: ;
+            --tw-pan-y: ;
+            --tw-pinch-zoom: ;
+            --tw-scroll-snap-strictness: proximity;
+            --tw-gradient-from-position: ;
+            --tw-gradient-via-position: ;
+            --tw-gradient-to-position: ;
+            --tw-ordinal: ;
+            --tw-slashed-zero: ;
+            --tw-numeric-figure: ;
+            --tw-numeric-spacing: ;
+            --tw-numeric-fraction: ;
+            --tw-ring-inset: ;
+            --tw-ring-offset-width: 0px;
+            --tw-ring-offset-color: #fff;
+            --tw-ring-color: rgb(59 130 246 / 0.5);
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 #0000;
+            --tw-shadow: 0 0 #0000;
+            --tw-shadow-colored: 0 0 #0000;
+            --tw-blur: ;
+            --tw-brightness: ;
+            --tw-contrast: ;
+            --tw-grayscale: ;
+            --tw-hue-rotate: ;
+            --tw-invert: ;
+            --tw-saturate: ;
+            --tw-sepia: ;
+            --tw-drop-shadow: ;
+            --tw-backdrop-blur: ;
+            --tw-backdrop-brightness: ;
+            --tw-backdrop-contrast: ;
+            --tw-backdrop-grayscale: ;
+            --tw-backdrop-hue-rotate: ;
+            --tw-backdrop-invert: ;
+            --tw-backdrop-opacity: ;
+            --tw-backdrop-saturate: ;
+            --tw-backdrop-sepia: ;
+            --tw-contain-size: ;
+            --tw-contain-layout: ;
+            --tw-contain-paint: ;
+            --tw-contain-style:
+        }
+
+        ::backdrop {
+            --tw-border-spacing-x: 0;
+            --tw-border-spacing-y: 0;
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+            --tw-pan-x: ;
+            --tw-pan-y: ;
+            --tw-pinch-zoom: ;
+            --tw-scroll-snap-strictness: proximity;
+            --tw-gradient-from-position: ;
+            --tw-gradient-via-position: ;
+            --tw-gradient-to-position: ;
+            --tw-ordinal: ;
+            --tw-slashed-zero: ;
+            --tw-numeric-figure: ;
+            --tw-numeric-spacing: ;
+            --tw-numeric-fraction: ;
+            --tw-ring-inset: ;
+            --tw-ring-offset-width: 0px;
+            --tw-ring-offset-color: #fff;
+            --tw-ring-color: rgb(59 130 246 / 0.5);
+            --tw-ring-offset-shadow: 0 0 #0000;
+            --tw-ring-shadow: 0 0 #0000;
+            --tw-shadow: 0 0 #0000;
+            --tw-shadow-colored: 0 0 #0000;
+            --tw-blur: ;
+            --tw-brightness: ;
+            --tw-contrast: ;
+            --tw-grayscale: ;
+            --tw-hue-rotate: ;
+            --tw-invert: ;
+            --tw-saturate: ;
+            --tw-sepia: ;
+            --tw-drop-shadow: ;
+            --tw-backdrop-blur: ;
+            --tw-backdrop-brightness: ;
+            --tw-backdrop-contrast: ;
+            --tw-backdrop-grayscale: ;
+            --tw-backdrop-hue-rotate: ;
+            --tw-backdrop-invert: ;
+            --tw-backdrop-opacity: ;
+            --tw-backdrop-saturate: ;
+            --tw-backdrop-sepia: ;
+            --tw-contain-size: ;
+            --tw-contain-layout: ;
+            --tw-contain-paint: ;
+            --tw-contain-style:
+        }
+
+        /* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */
+        *,
+        ::after,
+        ::before {
+            box-sizing: border-box;
+            border-width: 0;
+            border-style: solid;
+            border-color: #e5e7eb
+        }
+
+        ::after,
+        ::before {
+            --tw-content: ''
+        }
+
+        :host,
+        html {
+            line-height: 1.5;
+            -webkit-text-size-adjust: 100%;
+            -moz-tab-size: 4;
+            tab-size: 4;
+            font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-feature-settings: normal;
+            font-variation-settings: normal;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        body {
+            margin: 0;
+            line-height: inherit
+        }
+
+        hr {
+            height: 0;
+            color: inherit;
+            border-top-width: 1px
+        }
+
+        abbr:where([title]) {
+            -webkit-text-decoration: underline dotted;
+            text-decoration: underline dotted
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-size: inherit;
+            font-weight: inherit
+        }
+
+        a {
+            color: inherit;
+            text-decoration: inherit
+        }
+
+        b,
+        strong {
+            font-weight: bolder
+        }
+
+        code,
+        kbd,
+        pre,
+        samp {
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+            font-feature-settings: normal;
+            font-variation-settings: normal;
+            font-size: 1em
+        }
+
+        small {
+            font-size: 80%
+        }
+
+        sub,
+        sup {
+            font-size: 75%;
+            line-height: 0;
+            position: relative;
+            vertical-align: baseline
+        }
+
+        sub {
+            bottom: -.25em
+        }
+
+        sup {
+            top: -.5em
+        }
+
+        table {
+            text-indent: 0;
+            border-color: inherit;
+            border-collapse: collapse
+        }
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            font-family: inherit;
+            font-feature-settings: inherit;
+            font-variation-settings: inherit;
+            font-size: 100%;
+            font-weight: inherit;
+            line-height: inherit;
+            letter-spacing: inherit;
+            color: inherit;
+            margin: 0;
+            padding: 0
+        }
+
+        button,
+        select {
+            text-transform: none
+        }
+
+        button,
+        input:where([type=button]),
+        input:where([type=reset]),
+        input:where([type=submit]) {
+            -webkit-appearance: button;
+            background-color: transparent;
+            background-image: none
+        }
+
+        :-moz-focusring {
+            outline: auto
+        }
+
+        :-moz-ui-invalid {
+            box-shadow: none
+        }
+
+        progress {
+            vertical-align: baseline
+        }
+
+        ::-webkit-inner-spin-button,
+        ::-webkit-outer-spin-button {
+            height: auto
+        }
+
+        [type=search] {
+            -webkit-appearance: textfield;
+            outline-offset: -2px
+        }
+
+        ::-webkit-search-decoration {
+            -webkit-appearance: none
+        }
+
+        ::-webkit-file-upload-button {
+            -webkit-appearance: button;
+            font: inherit
+        }
+
+        summary {
+            display: list-item
+        }
+
+        blockquote,
+        dd,
+        dl,
+        figure,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        hr,
+        p,
+        pre {
+            margin: 0
+        }
+
+        fieldset {
+            margin: 0;
+            padding: 0
+        }
+
+        legend {
+            padding: 0
+        }
+
+        menu,
+        ol,
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0
+        }
+
+        dialog {
+            padding: 0
+        }
+
+        textarea {
+            resize: vertical
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            opacity: 1;
+            color: #9ca3af
+        }
+
+        [role=button],
+        button {
+            cursor: pointer
+        }
+
+        :disabled {
+            cursor: default
+        }
+
+        audio,
+        canvas,
+        embed,
+        iframe,
+        img,
+        object,
+        svg,
+        video {
+            display: block;
+            vertical-align: middle
+        }
+
+        img,
+        video {
+            max-width: 100%;
+            height: auto
+        }
+
+        [hidden]:where(:not([hidden=until-found])) {
+            display: none
+        }
+
+        .container {
+            width: 100%
+        }
+
+        @media (min-width: 640px) {
+            .container {
+                max-width: 640px
+            }
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                max-width: 768px
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1024px
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .container {
+                max-width: 1280px
+            }
+        }
+
+        @media (min-width: 1536px) {
+            .container {
+                max-width: 1536px
+            }
+        }
+
+        .mx-auto {
+            margin-left: auto;
+            margin-right: auto
+        }
+
+        .mb-12 {
+            margin-bottom: 3rem
+        }
+
+        .mb-2 {
+            margin-bottom: 0.5rem
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem
+        }
+
+        .mb-6 {
+            margin-bottom: 1.5rem
+        }
+
+        .mb-8 {
+            margin-bottom: 2rem
+        }
+
+        .mr-3 {
+            margin-right: 0.75rem
+        }
+
+        .mt-1 {
+            margin-top: 0.25rem
+        }
+
+        .mt-10 {
+            margin-top: 2.5rem
+        }
+
+        .mt-12 {
+            margin-top: 3rem
+        }
+
+        .mt-3 {
+            margin-top: 0.75rem
+        }
+
+        .block {
+            display: block
+        }
+
+        .inline-block {
+            display: inline-block
+        }
+
+        .flex {
+            display: flex
+        }
+
+        .grid {
+            display: grid
+        }
+
+        .hidden {
+            display: none
+        }
+
+        .h-10 {
+            height: 2.5rem
+        }
+
+        .h-12 {
+            height: 3rem
+        }
+
+        .h-6 {
+            height: 1.5rem
+        }
+
+        .h-auto {
+            height: auto
+        }
+
+        .w-6 {
+            width: 1.5rem
+        }
+
+        .w-full {
+            width: 100%
+        }
+
+        .max-w-3xl {
+            max-width: 48rem
+        }
+
+        .max-w-4xl {
+            max-width: 56rem
+        }
+
+        .max-w-full {
+            max-width: 100%
+        }
+
+        .transform {
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+        }
+
+        .appearance-none {
+            -webkit-appearance: none;
+            appearance: none
+        }
+
+        .grid-cols-2 {
+            grid-template-columns: repeat(2, minmax(0, 1fr))
+        }
+
+        .flex-col {
+            flex-direction: column
+        }
+
+        .items-center {
+            align-items: center
+        }
+
+        .justify-center {
+            justify-content: center
+        }
+
+        .justify-between {
+            justify-content: space-between
+        }
+
+        .gap-2 {
+            gap: 0.5rem
+        }
+
+        .space-x-4> :not([hidden])~ :not([hidden]) {
+            --tw-space-x-reverse: 0;
+            margin-right: calc(1rem * var(--tw-space-x-reverse));
+            margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)))
+        }
+
+        .space-x-6> :not([hidden])~ :not([hidden]) {
+            --tw-space-x-reverse: 0;
+            margin-right: calc(1.5rem * var(--tw-space-x-reverse));
+            margin-left: calc(1.5rem * calc(1 - var(--tw-space-x-reverse)))
+        }
+
+        .space-y-2> :not([hidden])~ :not([hidden]) {
+            --tw-space-y-reverse: 0;
+            margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
+            margin-bottom: calc(0.5rem * var(--tw-space-y-reverse))
+        }
+
+        .space-y-6> :not([hidden])~ :not([hidden]) {
+            --tw-space-y-reverse: 0;
+            margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
+            margin-bottom: calc(1.5rem * var(--tw-space-y-reverse))
+        }
+
+        .overflow-hidden {
+            overflow: hidden
+        }
+
+        .rounded {
+            border-radius: 0.25rem
+        }
+
+        .rounded-full {
+            border-radius: 9999px
+        }
+
+        .rounded-lg {
+            border-radius: 0.5rem
+        }
+
+        .border {
+            border-width: 1px
+        }
+
+        .border-2 {
+            border-width: 2px
+        }
+
+        .border-b {
+            border-bottom-width: 1px
+        }
+
+        .border-t {
+            border-top-width: 1px
+        }
+
+        .border-gold {
+            --tw-border-opacity: 1;
+            border-color: rgb(255 215 0 / var(--tw-border-opacity, 1))
+        }
+
+        .border-orange {
+            --tw-border-opacity: 1;
+            border-color: rgb(255 107 0 / var(--tw-border-opacity, 1))
+        }
+
+        .bg-black {
+            --tw-bg-opacity: 1;
+            background-color: rgb(0 0 0 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-orange {
+            --tw-bg-opacity: 1;
+            background-color: rgb(255 107 0 / var(--tw-bg-opacity, 1))
+        }
+
+        .bg-opacity-50 {
+            --tw-bg-opacity: 0.5
+        }
+
+        .bg-opacity-70 {
+            --tw-bg-opacity: 0.7
+        }
+
+        .p-6 {
+            padding: 1.5rem
+        }
+
+        .p-8 {
+            padding: 2rem
+        }
+
+        .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem
+        }
+
+        .px-6 {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem
+        }
+
+        .px-8 {
+            padding-left: 2rem;
+            padding-right: 2rem
+        }
+
+        .py-16 {
+            padding-top: 4rem;
+            padding-bottom: 4rem
+        }
+
+        .py-3 {
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem
+        }
+
+        .py-4 {
+            padding-top: 1rem;
+            padding-bottom: 1rem
+        }
+
+        .py-8 {
+            padding-top: 2rem;
+            padding-bottom: 2rem
+        }
+
+        .pt-4 {
+            padding-top: 1rem
+        }
+
+        .text-center {
+            text-align: center
+        }
+
+        .text-2xl {
+            font-size: 1.5rem;
+            line-height: 2rem
+        }
+
+        .text-3xl {
+            font-size: 1.875rem;
+            line-height: 2.25rem
+        }
+
+        .text-lg {
+            font-size: 1.125rem;
+            line-height: 1.75rem
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+            line-height: 1.25rem
+        }
+
+        .text-xl {
+            font-size: 1.25rem;
+            line-height: 1.75rem
+        }
+
+        .font-bold {
+            font-weight: 700
+        }
+
+        .leading-tight {
+            line-height: 1.25
+        }
+
+        .text-black {
+            --tw-text-opacity: 1;
+            color: rgb(0 0 0 / var(--tw-text-opacity, 1))
+        }
+
+        .text-gold {
+            --tw-text-opacity: 1;
+            color: rgb(255 215 0 / var(--tw-text-opacity, 1))
+        }
+
+        .text-orange {
+            --tw-text-opacity: 1;
+            color: rgb(255 107 0 / var(--tw-text-opacity, 1))
+        }
+
+        .text-white {
+            --tw-text-opacity: 1;
+            color: rgb(255 255 255 / var(--tw-text-opacity, 1))
+        }
+
+        .shadow {
+            --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+
+        .shadow-2xl {
+            --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+            --tw-shadow-colored: 0 25px 50px -12px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+
+        .shadow-lg {
+            --tw-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --tw-shadow-colored: 0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+        }
+
+        .transition {
+            transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+            transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 150ms
+        }
+
+        .duration-300 {
+            transition-duration: 300ms
+        }
+
+        .hover\:scale-105:hover {
+            --tw-scale-x: 1.05;
+            --tw-scale-y: 1.05;
+            transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))
+        }
+
+        .hover\:bg-darkorange:hover {
+            --tw-bg-opacity: 1;
+            background-color: rgb(204 85 0 / var(--tw-bg-opacity, 1))
+        }
+
+        .hover\:text-gold:hover {
+            --tw-text-opacity: 1;
+            color: rgb(255 215 0 / var(--tw-text-opacity, 1))
+        }
+
+        .hover\:opacity-90:hover {
+            opacity: 0.9
+        }
+
+        .focus\:border-orange:focus {
+            --tw-border-opacity: 1;
+            border-color: rgb(255 107 0 / var(--tw-border-opacity, 1))
+        }
+
+        .focus\:outline-none:focus {
+            outline: 2px solid transparent;
+            outline-offset: 2px
+        }
+
+        .checkbox-disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        @media (min-width: 768px) {
+            .md\:mb-0 {
+                margin-bottom: 0px
+            }
+
+            .md\:flex {
+                display: flex
+            }
+
+            .md\:h-16 {
+                height: 4rem
+            }
+
+            .md\:flex-row {
+                flex-direction: row
+            }
+
+            .md\:text-3xl {
+                font-size: 1.875rem;
+                line-height: 2.25rem
+            }
+
+            .md\:text-5xl {
+                font-size: 3rem;
+                line-height: 1
+            }
+
+            .md\:text-xl {
+                font-size: 1.25rem;
+                line-height: 1.75rem
+            }
+        }
+
+        #provinceSelect {
+            position: absolute;
+            z-index: 10;
+            max-height: 150px;
+            overflow-y: auto;
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .animated-bg {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .animated-bg::before {
+            content: "";
+            position: absolute;
+            top: -25%;
+            left: -25%;
+            width: 150%;
+            height: 150%;
+            background: conic-gradient(from 0deg at 50% 50%,
+                    rgba(255, 215, 0, 0.05) 0deg,
+                    rgba(255, 184, 51, 0.05) 45deg,
+                    rgba(255, 107, 0, 0.05) 90deg,
+                    rgba(255, 184, 51, 0.05) 135deg,
+                    rgba(255, 215, 0, 0.05) 180deg,
+                    rgba(255, 184, 51, 0.05) 225deg,
+                    rgba(255, 107, 0, 0.05) 270deg,
+                    rgba(255, 184, 51, 0.05) 315deg,
+                    rgba(255, 215, 0, 0.05) 360deg);
+            animation: rotate 20s linear infinite;
+            z-index: -1;
+        }
+
+        .flatpickr-calendar {
+            background-color: #000;
+            border: 1px solid #FFD700;
+            color: #fff;
+        }
+
+        .flatpickr-months,
+        .flatpickr-weekdays {
+            background-color: #111;
+            color: #FFD700;
+        }
+
+        .flatpickr-day {
+            background-color: #000;
+            color: #FFD700;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .flatpickr-day:hover {
+            background-color: #FFD700;
+            color: #000;
+        }
+
+        .flatpickr-day.today {
+            border: 1px solid #FF6B00;
+        }
+
+        .flatpickr-day.selected {
+            background-color: #FF6B00;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .flatpickr-time {
+            background-color: #000 !important;
+            border-top: 1px solid #FFD700;
+            color: #FFD700;
+        }
+
+        .flatpickr-time .numInput {
+            background-color: #000 !important;
+            border: none;
+            color: #FFD700;
+            font-size: 1.25rem;
+            text-align: center;
+        }
+
+        .flatpickr-time .numInput:focus {
+            outline: none;
+            background-color: #111;
+        }
+
+        .flatpickr-time .flatpickr-time-separator {
+            color: #FFD700;
+            font-weight: bold;
+        }
+
+        .flatpickr-am-pm {
+            color: #FFD700;
+            background-color: #000 !important;
+            border: none;
+        }
+
+        .flatpickr-am-pm:hover,
+        .flatpickr-time .numInput:hover {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .input-container {
+            position: relative;
+            width: 50%;
+        }
+
+        .input-container input {
+            height: 44px;
+            /* กำหนดความสูงให้เท่ากัน */
+            line-height: 1.2;
+            padding-right: 2.5rem;
+            /* เผื่อที่วาง icon */
+            box-sizing: border-box;
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 20px;
+            color: white;
+            pointer-events: none;
+            line-height: 1;
+        }
+
+        input::placeholder {
+            padding-left: 0.5rem;
+            /* เพิ่มระยะห่างซ้าย */
+            color: #aaa;
+            /* ปรับสี placeholder ให้เหมาะกับธีม */
+            opacity: 1;
+            /* บางเบราว์เซอร์ต้องกำหนด */
+            font-weight: 400;
+            font-size: 1rem;
+            line-height: 1.5;
+            /* ให้สูงพอดี */
+        }
+
+        #callTime.flatpickr-input {
+            height: 48px !important;
+            padding: 0.75rem 1rem !important;
+        }
+
+        .input-container input,
+        .flatpickr-input {
+            height: 48px !important;
+            padding: 0.5rem 1rem !important;
+            font-size: 1rem !important;
+            line-height: 1.5 !important;
+            border-radius: 0.375rem !important;
+            background-color: #000 !important;
+            color: #fff !important;
+            border: 1px solid #FFD700 !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        input.flatpickr-input::placeholder {
+            height: 2.75rem;
+            opacity: 1 !important;
+            text-align: left !important;
+            height: 2.75rem !important;
+            padding-top: 0.5rem !important;
+            padding-bottom: 0.5rem !important;
+            padding-left: .5rem !important;
+        }
+
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header with Admin Profile -->
+    <header class="py-4 px-6 shadow-lg border-b border-gold">
+        <div class="container mx-auto flex items-center justify-between">
+            <div class="flex items-center space-x-4">
+                <img src="logo_GFOX.png" alt="WDT Trader Team Logo" class="h-12 md:h-20">
+                <div>
+                    <h3 class="font-bold text-lg md:text-xl text-gold">WDT Trader Team</h3>
+                    <p class="text-sm text-orange">ผู้เชี่ยวชาญด้านการเทรด</p>
+                </div>
+            </div>
+            <div class="hidden md:flex space-x-4">
+                <a href="#" target="_blank" class="text-white  hover:text-gold transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="h-6 w-6" fill="currentColor">
+                        <title>LINE</title>
+                        <path
+                            d="M256 0C114.616 0 0 93.128 0 208c0 65.368 41.372 122.904 104.568 160.24-2.064 7.776-13.656 51.608-14.072 53.4 0 0-.272 2.368 1.224 3.248 1.52.888 3.424-.216 3.424-.216 4.496-.64 52.16-34.584 60.608-40.56C190.84 391.6 222.528 397.6 256 397.6c141.384 0 256-93.128 256-208S397.384 0 256 0z" />
+                        <path
+                            d="M163.52 274.4h-28.36v-91.2h28.36v91.2zm56.08 0h-28.36v-91.2h28.36v91.2zm86.44 0h-28.36v-91.2h28.36v91.2zm63.96 0h-28.36v-49.68l-14.4 49.68h-20.44l-14.4-49.68v49.68h-28.36v-91.2h33.56l19.64 57.24 19.64-57.24h33.56v91.2z" />
+                    </svg>
+                </a>
+                <a href="#" class="text-white hover:text-gold transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z">
+                        </path>
+                    </svg>
+                </a>
+                <a href="#" class="text-white hover:text-gold transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                        </path>
+                    </svg>
+                </a>
+                <a href="#" class="text-white hover:text-gold transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z">
+                        </path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-8 px-8 animated-bg">
+        <div class="container mx-auto text-center ">
+            <div class="flex justify-center mb-12">
+                <img src="photo_๒๐๒๕-๐๕-๑๔_๒๑-๓๐-๔๐.jpg" alt="WDT Trader Team Logo"
+                    class="max-w-full h-auto mx-auto rounded-lg shadow-2xl border-2 border-gold">
+            </div>
+            <h1 class="text-3xl md:text-5xl font-bold mb-6">🎯 <span class="text-gold">Gold Maker</span> by GFOX WDT
+            </h1>
+            <p class="text-xl mb-8 max-w-3xl mx-auto">เทรดง่าย แม่นยำ ทำกำไรแบบมือโปร — แม้คุณจะเพิ่งเริ่มต้น!</p>
+
+            <div class="mt-10 max-w-4xl mx-auto p-6 bg-black bg-opacity-50 rounded-lg border border-gold">
+                <h2 class="text-2xl md:text-3xl font-bold mb-4 text-orange">🚀 ปลดล็อกพลังการเทรด</h2>
+                <p class="text-lg">ด้วย EA ระดับโลก ที่สร้างผลลัพธ์จริงให้ทุกระดับของนักลงทุน</p>
+            </div>
+
+            <!-- <div class="mt-10">
+                <a href="#contact-form"
+                    class="inline-block bg-orange hover:bg-darkorange text-black font-bold py-3 px-8 rounded-full transition duration-300 transform hover:scale-105 border-2 border-gold">เริ่มต้นตอนนี้</a>
+            </div> -->
+        </div>
+    </section>
+
+    <!-- Main Image Section -->
+    <section class="px-6 py-8">
+        <div class="container mx-auto text-center">
+            <div class="mb-12">
+                <img src="photo_๒๐๒๕-๐๕-๑๔_๒๑-๓๙-๐๑.jpg" alt="Gold Maker Trading System"
+                    class="w-[640px] h-auto mx-auto rounded-lg shadow-2xl border-2 border-gold">
+            </div>
+
+            <div class="max-w-3xl mx-auto mt-12 p-6 bg-black bg-opacity-70 rounded-lg border border-orange">
+                <h2 class="text-2xl font-bold mb-4 text-gold">💡 พร้อมแล้วหรือยัง?</h2>
+                <p class="text-xl mb-2">เปลี่ยนความรู้ = กำไร | เปลี่ยนมือใหม่ = มือโปร</p>
+                <p class="text-xl font-bold text-orange">เริ่มต้นที่นี่ กับ Gold Maker</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section id="contact-form" class="py-8 px-6 animated-bg">
+        <div class="container mx-auto ">
+            <div class="max-w-3xl mx-auto bg-black rounded-lg overflow-hidden shadow-2xl border-2 border-gold">
+                <div class="p-8">
+                    <h2 class="text-2xl font-bold mb-6 text-center text-gold">เรียนรู้เพิ่มเติม</h2>
+                    <p class="mb-6 text-center">กรอกข้อมูลของคุณด้านล่างเพื่อรับข้อมูลเพิ่มเติมเกี่ยวกับ Gold Maker</p>
+
+                    <form id="contactForm" class="space-y-6">
+                        <div>
+                            <label class="block text-gold text-sm font-bold mb-2" for="name">ชื่อ</label>
+                            <input
+                                class="shadow appearance-none border border-gold rounded w-full py-3 px-4 bg-black text-white leading-tight focus:outline-none focus:shadow-outline focus:border-orange"
+                                id="name" name="name" type="text" placeholder="ชื่อ-นามสกุล" required>
+                        </div>
+
+                        <div>
+                            <label class="block text-gold text-sm font-bold mb-2" for="phone">เบอร์โทร</label>
+                            <input
+                                class="shadow appearance-none border border-gold rounded w-full py-3 px-4 bg-black text-white leading-tight focus:outline-none focus:shadow-outline focus:border-orange"
+                                id="phone" name="phone" type="tel" placeholder="เบอร์โทรศัพท์" required>
+                        </div>
+
+                        <div class="flex justify-between">
+                            <div class="input-container mr-2">
+                                <label for="callDay"
+                                    class="block text-gold text-sm font-bold mb-2">วันที่สะดวกให้โทร</label>
+                                <input type="text" id="callDay" name="callDay"
+                                    class="flatpickr-date shadow appearance-none border border-gold rounded w-full bg-black text-white focus:outline-none focus:border-orange"
+                                    placeholder="เลือกวันที่" required>
+                            </div>
+
+                            <div class="input-container ml-2">
+                                <label for="callTime"
+                                    class="block text-gold text-sm font-bold mb-2">เวลาที่สะดวกให้โทร</label>
+                                <input type="text" id="callTime" name="callTime"
+                                    class="flatpickr-input shadow appearance-none border border-gold rounded w-full bg-black text-white focus:outline-none focus:border-orange"
+                                    placeholder="เลือกเวลา" required>
+                            </div>
+                        </div>
+
+
+
+                        <div style="position: relative;">
+                            <label class="block text-gold text-sm font-bold mb-2" for="provinceSearch">จังหวัด</label>
+                            <input type="text" id="provinceSearch" name="province"
+                                placeholder="พิมพ์เพื่อค้นหาจังหวัด..."
+                                class="shadow appearance-none border border-gold rounded w-full py-3 px-4 bg-black text-white focus:outline-none focus:border-orange mb-2"
+                                autocomplete="off" required>
+                            <select id="provinceSelect" size="5"
+                                class="shadow appearance-none border border-gold rounded w-full py-3 px-4 bg-black text-white focus:outline-none focus:border-orange"
+                                style="display:none;">
+                            </select>
+                        </div>
+
+
+
+                        <div>
+                            <label class="block text-gold text-sm font-bold mb-2">มีประสบการณ์เทรด Forex
+                                มานานเท่าไหร่?</label>
+                            <div class="space-y-2 mt-3">
+                                <label class="radio-container">ไม่เคย
+                                    <input type="radio" name="experience" value="ไม่เคย" id="noExperience" required="">
+                                    <span class="radio-checkmark"></span>
+                                </label>
+                                <label class="radio-container">ต่ำกว่า 6 เดือน
+                                    <input type="radio" name="experience" value="ต่ำกว่า 6 เดือน">
+                                    <span class="radio-checkmark"></span>
+                                </label>
+                                <label class="radio-container">6 เดือน - 1 ปี
+                                    <input type="radio" name="experience" value="6 เดือน - 1 ปี">
+                                    <span class="radio-checkmark"></span>
+                                </label>
+                                <label class="radio-container">1 - 3 ปี
+                                    <input type="radio" name="experience" value="1 - 3 ปี">
+                                    <span class="radio-checkmark"></span>
+                                </label>
+                                <label class="radio-container">3 ปีขึ้นไป
+                                    <input type="radio" name="experience" value="3 ปีขึ้นไป">
+                                    <span class="radio-checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-gold text-sm font-bold mb-2">ปกติเทรดคู่เงินไหน?</label>
+                            <div class="grid grid-cols-2 gap-2 mt-3">
+                                <label class="custom-checkbox">ทองคำ
+                                    <input type="checkbox" name="tradingPairs" value="ทองคำ">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="custom-checkbox">น้ำมัน
+                                    <input type="checkbox" name="tradingPairs" value="น้ำมัน">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="custom-checkbox">EURUSD
+                                    <input type="checkbox" name="tradingPairs" value="EURUSD">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="custom-checkbox">GBPUSD
+                                    <input type="checkbox" name="tradingPairs" value="GBPUSD">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="custom-checkbox">USDJPY
+                                    <input type="checkbox" name="tradingPairs" value="USDJPY">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="custom-checkbox">AUDUSD
+                                    <input type="checkbox" name="tradingPairs" value="AUDUSD">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label class="custom-checkbox">BTCUSD
+                                    <input type="checkbox" name="tradingPairs" value="BTCUSD">
+                                    <span class="checkmark"></span>
+                                </label>
+                                <!-- <label class="custom-checkbox">ไม่เคย
+                                    <input type="checkbox" name="tradingPairs" value="ไม่เคย">
+                                    <span class="checkmark"></span>
+                                </label> -->
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-center pt-4">
+                            <button
+                                class="gold-gradient hover:opacity-90 text-black font-bold py-3 px-8 rounded-full focus:outline-none focus:shadow-outline transition duration-300 transform hover:scale-105"
+                                type="submit" id="submitBtn">
+                                ส่งข้อมูล
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-8 px-6 border-t border-gold">
+        <div class="container mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0 flex items-center">
+                    <img src="logo_GFOX.png" alt="WDT Trader Team Logo" class="h-12 md:h-20">
+                    <div>
+                        <h3 class="text-xl font-bold text-gold">WDT Trader Team</h3>
+                        <p class="text-sm mt-1">© 2023 สงวนลิขสิทธิ์</p>
+                    </div>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-white hover:text-gold transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-white hover:text-gold transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-white hover:text-gold transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="#" class="text-white hover:text-gold transition">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M18.384,22.779c0.322,0.228 0.737,0.285 1.107,0.145c0.37,-0.141 0.642,-0.457 0.724,-0.84c0.869,-4.084 2.977,-14.421 3.768,-18.136c0.06,-0.28 -0.04,-0.571 -0.26,-0.758c-0.22,-0.187 -0.525,-0.241 -0.797,-0.14c-4.193,1.552 -17.106,6.397 -22.384,8.35c-0.335,0.124 -0.553,0.446 -0.542,0.799c0.012,0.354 0.25,0.661 0.593,0.764c2.367,0.708 5.474,1.693 5.474,1.693c0,0 1.452,4.385 2.209,6.615c0.095,0.28 0.314,0.5 0.603,0.576c0.288,0.075 0.596,-0.004 0.811,-0.207c1.216,-1.148 3.096,-2.923 3.096,-2.923c0,0 3.572,2.619 5.598,4.062Zm-11.01,-8.677l1.679,5.538l0.373,-3.507c0,0 6.487,-5.851 10.185,-9.186c0.108,-0.098 0.123,-0.262 0.033,-0.377c-0.089,-0.115 -0.253,-0.142 -0.376,-0.064c-4.286,2.737 -11.894,7.596 -11.894,7.596Z">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+        flatpickr("#callDay", {
+            dateFormat: "Y-m-d",
+            // ปิดเวลา
+            enableTime: false,
+            minDate: "today"
+            // ภาษาไทยถ้าต้องการ มี plugin เพิ่มเติม
+            // locale: "th",
+        });
+
+        // เวลา (time only)
+        flatpickr("#callTime", {
+            enableTime: true,
+            noCalendar: true,
+            dateFormat: "H:i",
+            time_24hr: true,
+            allowInput: false,
+            wrap: false, // ปล่อยให้ input ตัวเดิมคงอยู่
+            minTime: new Date().getHours() + ":" + new Date().getMinutes()
+        });
+
+        const provinces = [
+            "กรุงเทพมหานคร", "กระบี่", "กาญจนบุรี", "กาฬสินธุ์", "กำแพงเพชร", "ขอนแก่น",
+            "จันทบุรี", "ฉะเชิงเทรา", "ชลบุรี", "ชัยนาท", "ชัยภูมิ", "ชุมพร", "เชียงใหม่", "เชียงราย",
+            "ตรัง", "ตราด", "ตาก", "นครนายก", "นครปฐม", "นครพนม", "นครราชสีมา", "นครศรีธรรมราช",
+            "นครสวรรค์", "นนทบุรี", "นราธิวาส", "น่าน", "บึงกาฬ", "บุรีรัมย์", "ปทุมธานี",
+            "ประจวบคีรีขันธ์", "ปราจีนบุรี", "ปัตตานี", "พระนครศรีอยุธยา", "พะเยา", "พังงา",
+            "พัทลุง", "พิจิตร", "พิษณุโลก", "เพชรบุรี", "เพชรบูรณ์", "แพร่", "ภูเก็ต", "มหาสารคาม",
+            "มุกดาหาร", "แม่ฮ่องสอน", "ยโสธร", "ยะลา", "ร้อยเอ็ด", "ระนอง", "ระยอง", "ราชบุรี",
+            "ลพบุรี", "ลำปาง", "ลำพูน", "เลย", "ศรีสะเกษ", "สกลนคร", "สงขลา", "สตูล", "สมุทรปราการ",
+            "สมุทรสงคราม", "สมุทรสาคร", "สระแก้ว", "สระบุรี", "สิงห์บุรี", "สุโขทัย", "สุพรรณบุรี",
+            "สุราษฎร์ธานี", "สุรินทร์", "หนองคาย", "หนองบัวลำภู", "อ่างทอง", "อุดรธานี", "อุทัยธานี",
+            "อุตรดิตถ์", "อุบลราชธานี", "อำนาจเจริญ"
+        ];
+
+        const provinceSelect = document.getElementById('provinceSelect');
+        const provinceSearch = document.getElementById('provinceSearch');
+
+        function populateSelect(filteredProvinces) {
+            provinceSelect.innerHTML = '';
+            if (filteredProvinces.length === 0) {
+                const option = document.createElement('option');
+                option.textContent = 'ไม่พบจังหวัดที่ค้นหา';
+                option.disabled = true;
+                provinceSelect.appendChild(option);
+            } else {
+                filteredProvinces.forEach(p => {
+                    const option = document.createElement('option');
+                    option.value = p;
+                    option.textContent = p;
+                    provinceSelect.appendChild(option);
+                });
+            }
+            provinceSelect.style.display = filteredProvinces.length === 0 ? 'block' : 'block';
+        }
+
+        provinceSelect.style.display = 'none';
+
+        provinceSearch.addEventListener('focus', () => {
+            // ตอนโฟกัสช่อง input ให้แสดง dropdown พร้อมรายการเต็ม (หรือคัดกรองตามค่า)
+            const search = provinceSearch.value.trim().toLowerCase();
+            if (search === '') {
+                populateSelect(provinces);
+            } else {
+                const filtered = provinces.filter(p => p.toLowerCase().includes(search));
+                populateSelect(filtered);
+            }
+            provinceSelect.style.display = 'block';
+        });
+
+        provinceSearch.addEventListener('input', () => {
+            const search = provinceSearch.value.trim().toLowerCase();
+            if (search === '') {
+                provinceSelect.style.display = 'none';
+                return;
+            }
+            const filtered = provinces.filter(p => p.toLowerCase().includes(search));
+            populateSelect(filtered.length ? filtered : []);
+            provinceSelect.style.display = filtered.length ? 'block' : 'none';
+        });
+
+        // เมื่อเลือกจังหวัดจาก select
+        provinceSelect.addEventListener('change', () => {
+            provinceSearch.value = provinceSelect.value;
+            provinceSelect.style.display = 'none';
+        });
+
+        // ซ่อน dropdown ถ้าคลิกนอก input หรือ dropdown
+        document.addEventListener('click', function (event) {
+            if (!provinceSearch.contains(event.target) && !provinceSelect.contains(event.target)) {
+                provinceSelect.style.display = 'none';
+            }
+        });
+
+        // ฟังก์ชันเช็ค validation ก่อน submit (เช่นใน submit event handler)
+        function isProvinceValid(province) {
+            return provinces.includes(province);
+        }
+
+
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const noExperienceRadio = document.getElementById("noExperience");
+            const experienceRadios = document.querySelectorAll('input[name="experience"]');
+            const tradingCheckboxes = document.querySelectorAll('input[name="tradingPairs"]');
+
+            function updateCheckboxState() {
+                const isNoExperience = noExperienceRadio.checked;
+
+                tradingCheckboxes.forEach(cb => {
+                    const label = cb.closest("label"); // ไปหา label ที่ครอบ checkbox ตัวนั้น
+
+                    cb.disabled = isNoExperience;
+                    if (isNoExperience) {
+                        cb.checked = false;
+                        label.classList.add("checkbox-disabled");
+                    } else {
+                        label.classList.remove("checkbox-disabled");
+                    }
+                });
+            }
+
+            experienceRadios.forEach(radio => {
+                radio.addEventListener("change", updateCheckboxState);
+            });
+
+            updateCheckboxState();
+        });
+
+
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const form = e.target;
+
+            // เช็ค province ว่าตรงกับรายการจังหวัดหรือเปล่า
+            const provinces = [
+                "กรุงเทพมหานคร", "กระบี่", "กาญจนบุรี", "กาฬสินธุ์", "กำแพงเพชร", "ขอนแก่น",
+                "จันทบุรี", "ฉะเชิงเทรา", "ชลบุรี", "ชัยนาท", "ชัยภูมิ", "ชุมพร", "เชียงใหม่", "เชียงราย",
+                "ตรัง", "ตราด", "ตาก", "นครนายก", "นครปฐม", "นครพนม", "นครราชสีมา", "นครศรีธรรมราช",
+                "นครสวรรค์", "นนทบุรี", "นราธิวาส", "น่าน", "บึงกาฬ", "บุรีรัมย์", "ปทุมธานี",
+                "ประจวบคีรีขันธ์", "ปราจีนบุรี", "ปัตตานี", "พระนครศรีอยุธยา", "พะเยา", "พังงา",
+                "พัทลุง", "พิจิตร", "พิษณุโลก", "เพชรบุรี", "เพชรบูรณ์", "แพร่", "ภูเก็ต", "มหาสารคาม",
+                "มุกดาหาร", "แม่ฮ่องสอน", "ยโสธร", "ยะลา", "ร้อยเอ็ด", "ระนอง", "ระยอง", "ราชบุรี",
+                "ลพบุรี", "ลำปาง", "ลำพูน", "เลย", "ศรีสะเกษ", "สกลนคร", "สงขลา", "สตูล", "สมุทรปราการ",
+                "สมุทรสงคราม", "สมุทรสาคร", "สระแก้ว", "สระบุรี", "สิงห์บุรี", "สุโขทัย", "สุพรรณบุรี",
+                "สุราษฎร์ธานี", "สุรินทร์", "หนองคาย", "หนองบัวลำภู", "อ่างทอง", "อุดรธานี", "อุทัยธานี",
+                "อุตรดิตถ์", "อุบลราชธานี", "อำนาจเจริญ"
+            ];
+
+            const provinceInput = form.province.value.trim();
+
+            if (!isProvinceValid(provinceSearch.value.trim())) {
+                e.preventDefault();
+                alert('กรุณาเลือกจังหวัดจากรายการเท่านั้น');
+                provinceSearch.focus();
+                return false;
+            }
+
+            // เตรียมข้อมูลส่ง (แปลง tradingPairs เป็น string คั่นด้วย comma)
+            const tradingPairs = Array.from(form.querySelectorAll('input[name="tradingPairs"]:checked')).map(cb => cb.value).join(", ");
+
+            console.log("ส่งเบอร์:", form.phone.value);  // ดูค่าก่อนส่ง
+
+            fetch("https://script.google.com/macros/s/AKfycbwka76zo0axVL0hK84_S-t-mbh24nuLAVFPOs7pDlRenWF5ZMBB0ExwsP6syxCdT_hmQg/exec", {
+                method: "POST",
+                body: new URLSearchParams({
+                    name: form.name.value,
+                    phone: form.phone.value,
+                    callDay: form.callDay.value,    // เพิ่ม callDay ที่เป็นวันที่
+                    callTime: form.callTime.value,  // เวลาที่สะดวก
+                    province: provinceInput,
+                    experience: form.experience.value,
+                    tradingPairs: tradingPairs
+                })
+            })
+                .then(res => res.text())
+                .then(response => {
+                    alert("ส่งข้อมูลสำเร็จ ขอบคุณค่ะ");
+                    form.reset();
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert("เกิดข้อผิดพลาดในการส่งข้อมูล");
+                });
+        });
+    </script>
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'93fb0532d2f087d1',t:'MTc0NzIzMjI1OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+    <iframe height="1" width="1"
+        style="position: absolute; top: 0px; left: 0px; border: none; visibility: hidden;"></iframe>
+</body>
+
+</html>
